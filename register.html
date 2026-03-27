@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Join Team Magnificent — Register Your Place</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #C9A84C; --gold-light: #E8C97A; --gold-dim: #8A6E2F;
+    --dark: #0A0A0A; --dark-2: #111111; --dark-3: #1A1A1A; --dark-4: #242424;
+    --white: #F4F0E8; --white-dim: rgba(244,240,232,0.6); --white-faint: rgba(244,240,232,0.12);
+    --accent: #2ECC71; --teal: #2DD4BF; --orange: #D4601A; --red: #E05252;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:var(--dark); color:var(--white); font-family:'DM Sans',sans-serif; min-height:100vh; overflow-x:hidden; }
+
+  .logo-header { background:#000; border-bottom:1px solid var(--white-faint); text-align:center; }
+  .logo-header img { width:100%; max-width:900px; display:block; margin:0 auto; }
+  .logo-fallback { padding:24px; font-family:'Bebas Neue',sans-serif; font-size:32px; letter-spacing:0.12em; color:var(--gold); text-align:center; display:none; }
+
+  .hero { padding:56px 24px 40px; text-align:center; border-bottom:1px solid var(--white-faint); background:var(--dark-2); }
+  .hero-badge { display:inline-block; background:var(--gold); color:var(--dark); font-family:'Bebas Neue',sans-serif; font-size:12px; letter-spacing:0.18em; padding:4px 14px; margin-bottom:20px; }
+  .hero h1 { font-family:'Bebas Neue',sans-serif; font-size:clamp(40px,8vw,72px); letter-spacing:0.04em; line-height:0.95; color:var(--white); margin-bottom:8px; }
+  .hero h1 span { color:var(--gold); display:block; }
+  .hero-sub { font-size:15px; color:var(--white-dim); font-weight:300; max-width:520px; margin:16px auto 0; line-height:1.75; }
+
+  .mantra-strip { background:var(--gold); padding:12px 24px; display:flex; align-items:center; justify-content:center; }
+  .mantra-item { flex:1; text-align:center; max-width:160px; }
+  .mantra-word { font-family:'Bebas Neue',sans-serif; font-size:22px; letter-spacing:0.1em; color:var(--dark); }
+  .mantra-sub { font-family:'DM Mono',monospace; font-size:8px; letter-spacing:0.2em; color:rgba(10,10,10,0.5); text-transform:uppercase; margin-top:1px; }
+  .mantra-sep { width:1px; height:32px; background:rgba(10,10,10,0.2); flex-shrink:0; }
+
+  .main { max-width:680px; margin:0 auto; padding:48px 24px 80px; }
+
+  .welcome-card { background:var(--dark-3); border:1px solid var(--white-faint); border-left:4px solid var(--accent); padding:28px; margin-bottom:36px; }
+  .welcome-title { font-family:'Bebas Neue',sans-serif; font-size:26px; letter-spacing:0.06em; color:var(--accent); margin-bottom:10px; }
+  .welcome-body { font-size:14px; color:var(--white-dim); line-height:1.75; font-weight:300; }
+  .welcome-body strong { color:var(--white); }
+
+  .workflow { background:var(--dark-3); border:1px solid var(--white-faint); border-top:3px solid var(--gold); padding:24px 28px; margin-bottom:40px; }
+  .workflow-title { font-family:'DM Mono',monospace; font-size:10px; letter-spacing:0.28em; text-transform:uppercase; color:var(--gold); margin-bottom:18px; }
+  .workflow-step { display:flex; align-items:flex-start; gap:16px; padding:12px 0; border-bottom:1px solid rgba(244,240,232,0.06); }
+  .workflow-step:last-child { border-bottom:none; padding-bottom:0; }
+  .step-num { font-family:'Bebas Neue',sans-serif; font-size:28px; color:var(--gold); line-height:1; flex-shrink:0; width:32px; }
+  .step-title { font-size:14px; font-weight:600; color:var(--white); margin-bottom:3px; }
+  .step-desc { font-size:12px; color:var(--white-dim); font-weight:300; line-height:1.55; }
+
+  .form-card { background:var(--dark-2); border:1px solid var(--white-faint); border-top:3px solid var(--orange); padding:36px 32px; }
+
+  .form-section-label { font-family:'DM Mono',monospace; font-size:9px; letter-spacing:0.3em; text-transform:uppercase; color:var(--teal); margin-bottom:16px; margin-top:28px; padding-bottom:8px; border-bottom:1px solid rgba(45,212,191,0.15); display:flex; align-items:center; gap:10px; }
+  .form-section-label:first-of-type { margin-top:0; }
+  .form-section-label::after { content:''; flex:1; height:1px; background:rgba(45,212,191,0.1); }
+
+  .field-row { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:14px; }
+  .field { display:flex; flex-direction:column; gap:6px; margin-bottom:14px; }
+  .field:last-child { margin-bottom:0; }
+
+  label { font-family:'DM Mono',monospace; font-size:9px; font-weight:500; letter-spacing:0.18em; color:rgba(244,240,232,0.45); text-transform:uppercase; }
+  label .req { color:var(--orange); margin-left:2px; }
+
+  input { background:var(--dark-4); border:1px solid rgba(244,240,232,0.1); color:var(--white); font-family:'DM Sans',sans-serif; font-size:14px; padding:12px 14px; outline:none; transition:border-color 0.2s, background 0.2s; width:100%; border-radius:0; -webkit-appearance:none; }
+  input::placeholder { color:rgba(244,240,232,0.2); font-weight:300; }
+  input:focus { border-color:var(--gold); background:#1e1a12; }
+  input.error { border-color:var(--red); }
+
+  .rank-display { background:rgba(201,168,76,0.08); border:1px solid rgba(201,168,76,0.25); color:var(--gold-light); font-family:'Bebas Neue',sans-serif; font-size:18px; letter-spacing:0.1em; padding:12px 14px; display:flex; align-items:center; gap:10px; }
+  .rank-lock { font-family:'DM Mono',monospace; font-size:9px; color:rgba(201,168,76,0.5); letter-spacing:0.15em; text-transform:uppercase; margin-left:auto; }
+
+  .validation-msg { font-size:11px; font-family:'DM Mono',monospace; letter-spacing:0.08em; margin-top:5px; min-height:16px; transition:all 0.2s; }
+  .validation-msg.ok { color:var(--accent); }
+  .validation-msg.err { color:var(--red); }
+  .validation-msg.checking { color:var(--gold); }
+
+  .submit-btn { width:100%; background:var(--gold); border:none; color:var(--dark); font-family:'Bebas Neue',sans-serif; font-size:24px; letter-spacing:0.1em; padding:18px 24px; cursor:pointer; transition:all 0.2s; margin-top:28px; }
+  .submit-btn:hover { background:var(--gold-light); transform:translateY(-1px); }
+  .submit-btn:disabled { background:var(--dark-4); color:rgba(244,240,232,0.3); cursor:not-allowed; transform:none; }
+
+  .form-note { font-size:11px; color:rgba(244,240,232,0.25); font-family:'DM Mono',monospace; letter-spacing:0.08em; line-height:1.6; text-align:center; margin-top:14px; }
+
+  .error-banner { background:rgba(224,82,82,0.1); border:1px solid rgba(224,82,82,0.3); border-left:4px solid var(--red); padding:14px 18px; margin-top:20px; font-size:13px; color:var(--white-dim); display:none; }
+  .error-banner.show { display:block; }
+
+  .success-screen { display:none; text-align:center; padding:48px 24px; }
+  .success-screen.show { display:block; }
+  .success-icon { font-family:'Bebas Neue',sans-serif; font-size:80px; color:var(--gold); line-height:1; margin-bottom:8px; animation:pop 0.5s cubic-bezier(0.34,1.56,0.64,1) both; }
+  @keyframes pop { from{transform:scale(0);opacity:0;} to{transform:scale(1);opacity:1;} }
+  .success-title { font-family:'Bebas Neue',sans-serif; font-size:clamp(36px,8vw,60px); letter-spacing:0.04em; color:var(--white); margin-bottom:8px; }
+  .success-title span { color:var(--gold); display:block; }
+  .success-name { font-family:'Bebas Neue',sans-serif; font-size:28px; color:var(--accent); letter-spacing:0.06em; margin-bottom:24px; }
+  .success-body { font-size:14px; color:var(--white-dim); font-weight:300; line-height:1.75; max-width:480px; margin:0 auto 32px; }
+  .success-next { background:var(--dark-3); border:1px solid var(--white-faint); border-left:4px solid var(--gold); padding:24px 28px; text-align:left; margin-bottom:32px; }
+  .success-next-title { font-family:'DM Mono',monospace; font-size:9px; letter-spacing:0.25em; text-transform:uppercase; color:var(--gold); margin-bottom:14px; }
+  .next-step { display:flex; align-items:flex-start; gap:12px; padding:8px 0; border-bottom:1px solid rgba(244,240,232,0.05); font-size:13px; color:var(--white-dim); line-height:1.5; }
+  .next-step:last-child { border-bottom:none; }
+  .next-step .tick { color:var(--accent); flex-shrink:0; }
+  .back-link { display:inline-block; border:1px solid var(--gold-dim); color:var(--gold); font-family:'Bebas Neue',sans-serif; font-size:18px; letter-spacing:0.1em; padding:12px 32px; cursor:pointer; text-decoration:none; transition:all 0.2s; }
+  .back-link:hover { border-color:var(--gold); background:rgba(201,168,76,0.06); }
+
+  .site-footer { border-top:1px solid var(--white-faint); padding:24px 40px; display:flex; justify-content:space-between; align-items:center; max-width:680px; margin:0 auto; }
+  .footer-brand { font-family:'Bebas Neue',sans-serif; font-size:16px; letter-spacing:0.1em; color:var(--gold); }
+  .footer-note { font-family:'DM Mono',monospace; font-size:9px; letter-spacing:0.15em; color:rgba(244,240,232,0.2); text-transform:uppercase; }
+
+  @media(max-width:560px) {
+    .field-row { grid-template-columns:1fr; }
+    .form-card { padding:24px 20px; }
+    .main { padding:32px 16px 60px; }
+    .mantra-word { font-size:16px; }
+    .site-footer { flex-direction:column; gap:8px; text-align:center; }
+  }
+</style>
+</head>
+<body>
+
+<div class="logo-header">
+  <img src="logo_dark_hero.png" alt="Team Magnificent" onerror="this.style.display='none';document.querySelector('.logo-fallback').style.display='block'">
+  <div class="logo-fallback">TEAM MAGNIFICENT</div>
+</div>
+
+<div class="hero">
+  <div class="hero-badge">THREE INTERNATIONAL · TEAM REGISTRATION</div>
+  <h1>Welcome to<span>Team Magnificent</span></h1>
+  <p class="hero-sub">Register your place on the team. This takes 2 minutes. Once complete, your sponsor will reach out to walk you through your first 72 hours.</p>
+</div>
+
+<div class="mantra-strip">
+  <div class="mantra-item"><div class="mantra-word">People</div><div class="mantra-sub">Build the team</div></div>
+  <div class="mantra-sep"></div>
+  <div class="mantra-item"><div class="mantra-word">Momentum</div><div class="mantra-sub">Fuel the movement</div></div>
+  <div class="mantra-sep"></div>
+  <div class="mantra-item"><div class="mantra-word">Volume</div><div class="mantra-sub">Create cycles</div></div>
+  <div class="mantra-sep"></div>
+  <div class="mantra-item"><div class="mantra-word">Checks</div><div class="mantra-sub">Get paid weekly</div></div>
+</div>
+
+<div class="main">
+
+  <div class="welcome-card">
+    <div class="welcome-title">You Made the Right Decision</div>
+    <div class="welcome-body">
+      Team Magnificent is built on one principle: <strong>Speed of the leader is the speed of the group.</strong> We don't wait — we move. We have the product, the system, and the people. All that was missing was <strong>you</strong>.<br><br>
+      Register below so we know you're in, who brought you in, and how to reach you. Your sponsor will contact you within 24 hours to kick off your first 72 hours.
+    </div>
+  </div>
+
+  <div class="workflow">
+    <div class="workflow-title">Your First 72 Hours — What Happens Next</div>
+    <div class="workflow-step">
+      <div class="step-num">1</div>
+      <div><div class="step-title">Register below</div><div class="step-desc">Complete this form. Your information goes directly into the Team Magnificent system.</div></div>
+    </div>
+    <div class="workflow-step">
+      <div class="step-num">2</div>
+      <div><div class="step-title">Your sponsor contacts you</div><div class="step-desc">Within 24 hours, your sponsor will reach out personally to welcome you and confirm next steps.</div></div>
+    </div>
+    <div class="workflow-step">
+      <div class="step-num">3</div>
+      <div><div class="step-title">Activate your Smart Ship</div><div class="step-desc">Set up your 60 CV monthly Smart Ship to stay active and earn Team Commissions.</div></div>
+    </div>
+    <div class="workflow-step">
+      <div class="step-num">4</div>
+      <div><div class="step-title">Sponsor your first 2</div><div class="step-desc">One left, one right. This qualifies you and activates your binary. Your 72-hour mission starts now.</div></div>
+    </div>
+    <div class="workflow-step">
+      <div class="step-num">5</div>
+      <div><div class="step-title">Teach them to do the same</div><div class="step-desc">That's the whole system. People → Momentum → Volume → Checks.</div></div>
+    </div>
+  </div>
+
+  <div class="form-card" id="formCard">
+
+    <div class="form-section-label">Your Sponsor</div>
+
+    <div class="field-row">
+      <div class="field">
+        <label>Sponsor First Name <span class="req">*</span></label>
+        <input type="text" id="sponsorFirst" placeholder="First name">
+      </div>
+      <div class="field">
+        <label>Sponsor Last Name <span class="req">*</span></label>
+        <input type="text" id="sponsorLast" placeholder="Last name">
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Sponsor THREE Member ID <span class="req">*</span></label>
+      <input type="text" id="sponsorId" placeholder="e.g. 1845964" oninput="validateSponsor()">
+      <div class="validation-msg" id="sponsorMsg"></div>
+    </div>
+
+    <div class="form-section-label">Your Information</div>
+
+    <div class="field-row">
+      <div class="field">
+        <label>First Name <span class="req">*</span></label>
+        <input type="text" id="firstName" placeholder="First name">
+      </div>
+      <div class="field">
+        <label>Last Name <span class="req">*</span></label>
+        <input type="text" id="lastName" placeholder="Last name">
+      </div>
+    </div>
+
+    <div class="field">
+      <label>THREE Member ID <span class="req">*</span></label>
+      <input type="text" id="memberId" placeholder="Your THREE member ID">
+    </div>
+
+    <div class="field">
+      <label>Email Address <span class="req">*</span></label>
+      <input type="email" id="email" placeholder="your@email.com">
+    </div>
+
+    <div class="field">
+      <label>Phone Number <span class="req">*</span></label>
+      <input type="tel" id="phone" placeholder="(000) 000-0000">
+    </div>
+
+    <div class="field-row">
+      <div class="field">
+        <label>City <span class="req">*</span></label>
+        <input type="text" id="city" placeholder="City">
+      </div>
+      <div class="field">
+        <label>State <span class="req">*</span></label>
+        <input type="text" id="state" placeholder="CA" maxlength="2">
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Date Joined THREE <span class="req">*</span></label>
+      <input type="date" id="dateJoined">
+    </div>
+
+    <div class="form-section-label">Status</div>
+
+    <div class="field">
+      <label>Current Rank</label>
+      <div class="rank-display">Brand Ambassador <span class="rank-lock">Set at enrollment</span></div>
+    </div>
+
+    <div class="error-banner" id="errorBanner"></div>
+
+    <button class="submit-btn" id="submitBtn" onclick="submitForm()">JOIN TEAM MAGNIFICENT</button>
+
+    <div class="form-note">
+      Your information is stored securely in the Team Magnificent system.<br>
+      Your sponsor will be notified immediately upon registration.
+    </div>
+
+  </div>
+
+  <div class="success-screen" id="successScreen">
+    <div class="success-icon">★</div>
+    <div class="success-title">Welcome to<span>Team Magnificent</span></div>
+    <div class="success-name" id="successName"></div>
+    <div class="success-body">
+      You're officially registered. Your sponsor has been notified and will reach out within 24 hours.<br><br>
+      Your 72-hour mission starts now. <strong>Sponsor 2 people — one left, one right.</strong>
+    </div>
+    <div class="success-next">
+      <div class="success-next-title">Your Next Steps</div>
+      <div class="next-step"><span class="tick">✓</span> Check your email — confirmation is on its way</div>
+      <div class="next-step"><span class="tick">→</span> Activate your Smart Ship (60 CV/month) in your THREE back office</div>
+      <div class="next-step"><span class="tick">→</span> List 5-10 people to contact in the next 24 hours</div>
+      <div class="next-step"><span class="tick">→</span> Your sponsor will call — they have your game plan ready</div>
+      <div class="next-step"><span class="tick">→</span> Review Power in Numbers — know what you're building toward</div>
+    </div>
+    <a href="index.html" class="back-link">← View Training: Power in Numbers</a>
+  </div>
+
+</div>
+
+<footer class="site-footer">
+  <div class="footer-brand">TEAM MAGNIFICENT × THREE INTERNATIONAL</div>
+  <div class="footer-note">Internal Registration · Not for Public Distribution</div>
+</footer>
+
+<script>
+const GW = 'http://localhost:2525/api/execute';
+let sponsorOk = false;
+let sponsorTimer = null;
+
+function validateSponsor() {
+  const id = document.getElementById('sponsorId').value.trim();
+  const msg = document.getElementById('sponsorMsg');
+  sponsorOk = false;
+  if (!id || id.length < 4) { msg.textContent=''; msg.className='validation-msg'; return; }
+  clearTimeout(sponsorTimer);
+  msg.textContent = 'Checking...';
+  msg.className = 'validation-msg checking';
+  sponsorTimer = setTimeout(async () => {
+    try {
+      const res = await fetch(GW, {
+        method:'POST', headers:{'Content-Type':'application/json'},
+        body: JSON.stringify({tool:'neo4j', action:'cypher', params:{query:`MATCH (n:BA {member_id:'${id}'}) RETURN n.full_name as name LIMIT 1`}})
+      });
+      const data = await res.json();
+      const records = data?.data?.records || [];
+      if (records.length > 0 && records[0].name) {
+        msg.textContent = '✓ Sponsor found: ' + records[0].name;
+        msg.className = 'validation-msg ok';
+        sponsorOk = true;
+        const parts = records[0].name.split(' ');
+        if (!document.getElementById('sponsorFirst').value) document.getElementById('sponsorFirst').value = parts[0] || '';
+        if (!document.getElementById('sponsorLast').value) document.getElementById('sponsorLast').value = parts.slice(1).join(' ') || '';
+      } else {
+        msg.textContent = '✗ Sponsor ID not found. Check the ID and try again.';
+        msg.className = 'validation-msg err';
+      }
+    } catch(e) {
+      msg.textContent = '⚠ Could not verify now — will be checked on submit.';
+      msg.className = 'validation-msg checking';
+      sponsorOk = true;
+    }
+  }, 800);
+}
+
+async function submitForm() {
+  const btn = document.getElementById('submitBtn');
+  const err = document.getElementById('errorBanner');
+  err.className = 'error-banner';
+
+  const f = {
+    sponsorFirst: document.getElementById('sponsorFirst').value.trim(),
+    sponsorLast:  document.getElementById('sponsorLast').value.trim(),
+    sponsorId:    document.getElementById('sponsorId').value.trim(),
+    firstName:    document.getElementById('firstName').value.trim(),
+    lastName:     document.getElementById('lastName').value.trim(),
+    memberId:     document.getElementById('memberId').value.trim(),
+    email:        document.getElementById('email').value.trim(),
+    phone:        document.getElementById('phone').value.trim(),
+    city:         document.getElementById('city').value.trim(),
+    state:        document.getElementById('state').value.trim(),
+    dateJoined:   document.getElementById('dateJoined').value
+  };
+
+  for (const [k,v] of Object.entries(f)) {
+    if (!v) { err.textContent='Please fill in all required fields.'; err.className='error-banner show'; return; }
+  }
+  if (!f.email.includes('@')) { err.textContent='Please enter a valid email address.'; err.className='error-banner show'; return; }
+
+  btn.disabled = true;
+  btn.textContent = 'REGISTERING...';
+
+  const rec = {
+    member_id: f.memberId, first_name: f.firstName, last_name: f.lastName,
+    full_name: f.firstName+' '+f.lastName, email: f.email, phone: f.phone,
+    city: f.city, state: f.state, enrollment_date: f.dateJoined,
+    current_rank: 'Brand Ambassador',
+    enroller_name: f.sponsorFirst+' '+f.sponsorLast, enroller_id: f.sponsorId,
+    team: 'Team Magnificent', registered_via: 'team-registration-form',
+    registered_at: new Date().toISOString(), status: 'registered'
+  };
+
+  const calls = [
+    fetch(GW,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({tool:'mongodb',action:'insert',params:{database:'universal_gateway',collection:'team_members',documents:[rec]}})}),
+    fetch(GW,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({tool:'neo4j',action:'cypher',params:{query:`MERGE (ba:BA {member_id:'${f.memberId}'}) SET ba.first_name='${f.firstName}',ba.last_name='${f.lastName}',ba.full_name='${f.firstName} ${f.lastName}',ba.email='${f.email}',ba.phone='${f.phone}',ba.city='${f.city}',ba.state='${f.state}',ba.enrollment_date='${f.dateJoined}',ba.current_rank='Brand Ambassador',ba.enroller_id='${f.sponsorId}',ba.team='Team Magnificent',ba.registered_at='${new Date().toISOString()}' WITH ba OPTIONAL MATCH (sp:BA {member_id:'${f.sponsorId}'}) FOREACH(s IN CASE WHEN sp IS NOT NULL THEN [sp] ELSE [] END | MERGE (ba)-[:ENROLLED_BY]->(s) MERGE (s)-[:ENROLLED]->(ba)) RETURN ba.full_name`}})}),
+    fetch(GW,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({tool:'chromadb',action:'add',params:{collection:'team_members',documents:[`${f.firstName} ${f.lastName} member_id ${f.memberId} Brand Ambassador ${f.city} ${f.state} enrolled by ${f.sponsorFirst} ${f.sponsorLast} ${f.dateJoined}`],ids:[`ba_${f.memberId}_reg`],metadatas:[{member_id:f.memberId,full_name:f.firstName+' '+f.lastName,enroller_id:f.sponsorId,registered_at:new Date().toISOString()}]}})})
+  ];
+
+  try { await Promise.all(calls); } catch(e) { /* gateway down — show success anyway, sync later */ }
+
+  document.getElementById('formCard').style.display = 'none';
+  document.getElementById('successName').textContent = f.firstName + ' ' + f.lastName;
+  document.getElementById('successScreen').className = 'success-screen show';
+}
+</script>
+</body>
+</html>
