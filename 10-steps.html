@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Team Magnificent — 10 Steps to Building Your Business</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --gold: #C9A84C;
+  --gold-light: #E8C97A;
+  --gold-dim: rgba(201,168,76,0.2);
+  --dark: #0A0A0A;
+  --dark-2: #0F0F0F;
+  --dark-3: #1A1A1A;
+  --dark-4: #242424;
+  --white: #F4F0E8;
+  --white-dim: rgba(244,240,232,0.65);
+  --white-faint: rgba(244,240,232,0.1);
+  --teal: #2DD4BF;
+  --accent: #2ECC71;
+  --orange: #D4601A;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body { background:var(--dark); color:var(--white); font-family:'DM Sans',sans-serif; overflow-x:hidden; }
+
+/* ══ SECTION BASE ══ */
+.section { padding: 80px 24px; border-bottom: 1px solid var(--white-faint); }
+.section-inner { max-width: 860px; margin: 0 auto; }
+.section-tag {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.section-tag::after { content:''; flex:1; height:1px; background:var(--white-faint); }
+.section-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(36px, 6vw, 64px);
+  letter-spacing: 0.03em;
+  line-height: 0.95;
+  margin-bottom: 24px;
+}
+
+/* ══ 10 STEPS ══ */
+.steps-grid { display: flex; flex-direction: column; gap: 2px; margin-top: 36px; }
+.step-card {
+  background: var(--dark-3);
+  border: 1px solid var(--white-faint);
+  padding: 28px 32px;
+  display: grid;
+  grid-template-columns: 64px 1fr;
+  gap: 24px;
+  align-items: start;
+  transition: border-color 0.3s;
+  cursor: pointer;
+}
+.step-card:hover { border-color: rgba(201,168,76,0.3); }
+.step-card.active { border-color: var(--gold); background: rgba(201,168,76,0.05); }
+.step-number {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 56px;
+  color: rgba(201,168,76,0.25);
+  line-height: 1;
+  transition: color 0.3s;
+}
+.step-card.active .step-number,
+.step-card:hover .step-number { color: var(--gold); }
+.step-name {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 22px;
+  letter-spacing: 0.04em;
+  color: var(--white);
+  margin-bottom: 8px;
+}
+.step-desc { font-size: 13px; color: var(--white-dim); line-height: 1.65; font-weight: 300; }
+.step-insight {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  color: var(--teal);
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid rgba(45,212,191,0.15);
+  display: none;
+}
+.step-card.active .step-insight { display: block; }
+
+/* ══ MANTRA ══ */
+.mantra-strip {
+  background: var(--gold);
+  padding: 14px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.mantra-item { flex:1; text-align:center; max-width:180px; }
+.mantra-word { font-family:'Bebas Neue',sans-serif; font-size:clamp(18px,3vw,26px); letter-spacing:0.1em; color:var(--dark); }
+.mantra-sub { font-family:'DM Mono',monospace; font-size:8px; letter-spacing:0.2em; color:rgba(10,10,10,0.5); text-transform:uppercase; margin-top:1px; }
+.mantra-sep { width:1px; height:36px; background:rgba(10,10,10,0.2); flex-shrink:0; }
+
+/* ══ FOOTER ══ */
+.site-footer {
+  background: #000;
+  border-top: 1px solid var(--white-faint);
+  padding: 28px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.footer-brand { font-family:'Bebas Neue',sans-serif; font-size:18px; letter-spacing:0.1em; color:var(--gold); }
+.footer-note { font-family:'DM Mono',monospace; font-size:9px; letter-spacing:0.15em; color:rgba(244,240,232,0.2); text-transform:uppercase; }
+
+@media(max-width:680px) {
+  .step-card { grid-template-columns: 48px 1fr; gap:16px; }
+  .step-number { font-size:40px; }
+  .site-footer { flex-direction:column; gap:12px; text-align:center; }
+  .mantra-word { font-size:16px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ══ 10 STEPS ══ -->
+<section class="section" id="steps">
+  <div class="section-inner">
+    <div class="section-tag">Your Blueprint for Success</div>
+    <h2 class="section-title">10 Steps to<br><span style="color:var(--gold)">Building Your Business</span></h2>
+
+    <div class="steps-grid">
+      <div class="step-card" onclick="toggleStep(this)">
+        <div class="step-number">01</div>
+        <div>
+          <div class="step-name">Create an Emotional Barrier of Exit</div>
+          <div class="step-desc">Establish your WHY — it should make you cry. Your WHY is bigger than any obstacle, any rejection, any slow week. When you know WHY, the HOW becomes possible.</div>
+          <div class="step-insight">★ Your why is your fuel. Write it down. Say it out loud. Share it with your sponsor today.</div>
+        </div>
+      </div>
+      <div class="step-card" onclick="toggleStep(this)">
+        <div class="step-number">02</div>
+        <div>
+          <div class="step-name">Place an Appropriate Initial Order</div>
+          <div class="step-desc">Choose Entry, Elite, or Pro pack. People do what YOU do — start bigger, your team starts bigger. Your initial order is your first statement of belief in this business.</div>
+          <div class="step-insight">★ The Simple Six Ultimate Pack generates 900 CV on day one — that's a full cycle by itself.</div>
+        </div>
+      </div>
+      <div class="step-card" onclick="toggleStep(this)">
+        <div class="step-number">03</div>
+        <div>
+          <div class="step-name">Pay Your Overhead</div>
+          <div class="step-desc">It costs money to do business. Set up your Smart Ship at 60+ CV per month to stay active and qualify for Team Commission payouts every week.</div>
+          <div class="step-insight">★ Smart Ship is not an expense — it is your weekly paycheck qualification.</div>
+        </div>
+      </div>
+      <div class="step-card" onclick="toggleStep(this)">
+        <div class="step-number">04</div>
+        <div>
+          <div class="step-name">Review Back Office Daily</div>
+          <div class="step-desc">Review your back office DAILY for minimum 30 days. Know your numbers — your volume, your team, your rank. What gets measured gets improved.</div>
+          <div class="step-insight">★ Your back office is your cockpit. Professionals check their instruments every day.</div>
+        </div>
+      </div>
+      <div class="step-card" onclick="toggleStep(this)">
+        <div class="step-number">05</div>
+        <div>
+          <div class="step-name">Build Belief</div>
+          <div class="step-desc">Build belief in the PRODUCT, the INDUSTRY, and YOURSELF. Use the product. Know the science. Study the numbers. You can only sell what you believe in — and you can only lead what you live.</div>
+          <div class="step-insight">★ Kevin lost 14 lbs in 6 weeks on GLP THREE. That is belief with evidence.</div>
+        </div>
+      </div>
+      <div class="step-card" onclick="toggleStep(this)">
+        <div class="step-number">06</div>
+        <div>
+          <div class="step-name">Create Your Candidate List</div>
+          <div class="step-desc">Write 100+ names. Add 5-10 new names DAILY. Don't pre-judge anyone — the ones you think will say no are often the ones who build empires. Everyone deserves to hear about this.</div>
+          <div class="step-insight">★ Your list is your business. A professional maintains and grows it every single day.</div>
+        </div>
+      </div>
+      <div class="step-card" onclick="toggleStep(this)">
+        <div class="step-number">07</div>
+        <div>
+          <div class="step-name">Master the Art of Invitation</div>
+          <div class="step-desc">Learn the proper way to invite. Be genuine, not salesy. Connect with 2-3 people per day. The invitation is not a pitch — it is an opportunity you are offering to someone you care about.</div>
+          <div class="step-insight">★ Professionals invite. Amateurs try to sell. Master the difference.</div>
+        </div>
+      </div>
+      <div class="step-card" onclick="toggleStep(this)">
+        <div class="step-number">08</div>
+        <div>
+          <div class="step-name">Learn How to Present</div>
+          <div class="step-desc">Simple flow: Your Story → Products → Opportunity → Next Step. Keep it SHORT — 15 to 30 minutes maximum. Your story is your most powerful tool. People join people, not companies.</div>
+          <div class="step-insight">★ The tools present for you. Your job is to connect, share your story, and invite to a next step.</div>
+        </div>
+      </div>
+      <div class="step-card" onclick="toggleStep(this)">
+        <div class="step-number">09</div>
+        <div>
+          <div class="step-name">Winning the Race to Profitability</div>
+          <div class="step-desc">Focus on profitable actions. Build BOTH legs equally for maximum cycles. The binary rewards balance — every week you build both sides is a week you move toward your next cycle threshold.</div>
+          <div class="step-insight">★ 300 CV lesser leg + 600 CV greater leg = $35. Build both. Every week. Without exception.</div>
+        </div>
+      </div>
+      <div class="step-card" onclick="toggleStep(this)">
+        <div class="step-number">10</div>
+        <div>
+          <div class="step-name">Take MASSIVE Action</div>
+          <div class="step-desc">Implement CONSISTENT, MASSIVE action toward your goals. 67 enrollments in 3 days is POSSIBLE. Speed of the leader is the speed of the group. Move fast and your team moves fast.</div>
+          <div class="step-insight">★ SUCCESS LOVES SPEED. This is not a hobby. This is a business. Run it like one.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FOOTER ══ -->
+<div class="mantra-strip">
+  <div class="mantra-item"><div class="mantra-word">People</div><div class="mantra-sub">Build the team</div></div>
+  <div class="mantra-sep"></div>
+  <div class="mantra-item"><div class="mantra-word">Momentum</div><div class="mantra-sub">Fuel the movement</div></div>
+  <div class="mantra-sep"></div>
+  <div class="mantra-item"><div class="mantra-word">Volume</div><div class="mantra-sub">Create cycles</div></div>
+  <div class="mantra-sep"></div>
+  <div class="mantra-item"><div class="mantra-word">Checks</div><div class="mantra-sub">Get paid weekly</div></div>
+</div>
+
+<footer class="site-footer">
+  <div class="footer-brand">TEAM MAGNIFICENT × THREE INTERNATIONAL</div>
+  <div class="footer-note">For Training Purposes Only · Not a guarantee of income · © 2026 iii International LLC</div>
+</footer>
+
+<script>
+function toggleStep(el) {
+  const wasActive = el.classList.contains('active');
+  document.querySelectorAll('.step-card').forEach(c => c.classList.remove('active'));
+  if (!wasActive) el.classList.add('active');
+}
+</script>
+</body>
+</html>
