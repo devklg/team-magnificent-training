@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Team Magnificent — Vision Statement</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0A0A0A;
+    --gold: #C9A84C;
+    --teal: #2DD4BF;
+    --cream: #F5EFE6;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  @page { size: 8.5in 11in; margin: 0; }
+  body {
+    background: var(--bg);
+    color: var(--cream);
+    font-family: 'DM Sans', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+  }
+  .frame {
+    max-width: 800px;
+    width: 100%;
+    border: 3px solid var(--gold);
+    padding: 60px 50px;
+    position: relative;
+    background: linear-gradient(135deg, rgba(201,168,76,0.03) 0%, rgba(10,10,10,0.95) 50%, rgba(45,212,191,0.03) 100%);
+  }
+  .frame::before,
+  .frame::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--gold);
+  }
+  .frame::before { top: 15px; left: 15px; border-right: none; border-bottom: none; }
+  .frame::after { bottom: 15px; right: 15px; border-left: none; border-top: none; }
+  .corner-tl,
+  .corner-br {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--gold);
+  }
+  .corner-tl { top: 15px; right: 15px; border-left: none; border-bottom: none; }
+  .corner-br { bottom: 15px; left: 15px; border-right: none; border-top: none; }
+  .logo {
+    text-align: center;
+    margin-bottom: 35px;
+  }
+  .logo svg {
+    width: 80px;
+    height: 80px;
+    filter: drop-shadow(0 0 20px rgba(201,168,76,0.4));
+  }
+  header {
+    text-align: center;
+    margin-bottom: 50px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid rgba(201,168,76,0.3);
+  }
+  .eyebrow {
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--teal);
+    margin-bottom: 16px;
+    font-weight: 500;
+  }
+  h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 64px;
+    letter-spacing: 6px;
+    color: var(--gold);
+    line-height: 1;
+    margin-bottom: 20px;
+    text-shadow: 0 0 30px rgba(201,168,76,0.4);
+  }
+  .subtitle {
+    font-size: 15px;
+    color: var(--cream);
+    opacity: 0.8;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  .vision {
+    line-height: 1.9;
+    font-size: 18px;
+    color: var(--cream);
+    margin-bottom: 40px;
+  }
+  .vision p {
+    margin-bottom: 28px;
+  }
+  .vision strong {
+    color: var(--gold);
+    font-weight: 700;
+  }
+  .vision em {
+    color: var(--teal);
+    font-style: normal;
+    font-weight: 500;
+  }
+  .declaration {
+    background: linear-gradient(135deg, rgba(201,168,76,0.15) 0%, rgba(45,212,191,0.08) 100%);
+    border-left: 4px solid var(--gold);
+    padding: 30px 35px;
+    margin: 40px 0;
+  }
+  .declaration p {
+    font-size: 20px;
+    line-height: 1.7;
+    color: var(--cream);
+    font-weight: 500;
+  }
+  .goal-block {
+    background: linear-gradient(135deg, rgba(45,212,191,0.12) 0%, rgba(201,168,76,0.08) 100%);
+    border: 2px solid var(--teal);
+    padding: 35px;
+    margin: 40px 0;
+    text-align: center;
+  }
+  .goal-block .label {
+    font-size: 13px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--teal);
+    margin-bottom: 15px;
+    font-weight: 500;
+  }
+  .goal-block .number {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 72px;
+    letter-spacing: 4px;
+    color: var(--gold);
+    line-height: 1;
+    margin-bottom: 12px;
+    text-shadow: 0 0 30px rgba(201,168,76,0.5);
+  }
+  .goal-block .desc {
+    font-size: 18px;
+    color: var(--cream);
+    font-weight: 500;
+    line-height: 1.6;
+  }
+  footer {
+    text-align: center;
+    padding-top: 40px;
+    border-top: 1px solid rgba(201,168,76,0.3);
+    margin-top: 50px;
+  }
+  .signature {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 32px;
+    letter-spacing: 3px;
+    color: var(--gold);
+    margin-bottom: 8px;
+  }
+  .role {
+    font-size: 13px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--teal);
+    opacity: 0.9;
+  }
+  .date {
+    font-size: 12px;
+    color: var(--cream);
+    opacity: 0.6;
+    margin-top: 20px;
+    letter-spacing: 1px;
+  }
+  @media print {
+    body { padding: 0; background: white; }
+    .frame { border-color: #000; background: white; }
+    h1, .signature, .goal-block .number { color: #000; text-shadow: none; }
+    .eyebrow, .role, .goal-block .label { color: #666; }
+    .vision, .declaration p, .goal-block .desc, footer { color: #000; }
+    .vision strong { color: #000; font-weight: 700; }
+    .vision em { color: #000; font-weight: 500; }
+    .goal-block { border-color: #666; background: #f5f5f5; }
+    .logo svg { filter: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="frame">
+  <div class="corner-tl"></div>
+  <div class="corner-br"></div>
+
+  <div class="logo">
+    <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <radialGradient id="goldGlow" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" style="stop-color:#F5C030;stop-opacity:0.8" />
+          <stop offset="100%" style="stop-color:#C9A84C;stop-opacity:1" />
+        </radialGradient>
+      </defs>
+      <g transform="translate(100,100)">
+        <polygon points="0,-85 20,-25 85,-20 35,20 50,85 0,45 -50,85 -35,20 -85,-20 -20,-25" fill="url(#goldGlow)" stroke="#C9A84C" stroke-width="2"/>
+        <circle cx="0" cy="0" r="18" fill="#2DD4BF" stroke="#1BA89A" stroke-width="2"/>
+        <line x1="0" y1="-70" x2="0" y2="-45" stroke="#5B9BD5" stroke-width="2.5" stroke-linecap="round"/>
+        <line x1="0" y1="45" x2="0" y2="70" stroke="#5B9BD5" stroke-width="2.5" stroke-linecap="round"/>
+        <line x1="-70" y1="0" x2="-45" y2="0" stroke="#5B9BD5" stroke-width="2.5" stroke-linecap="round"/>
+        <line x1="45" y1="0" x2="70" y2="0" stroke="#5B9BD5" stroke-width="2.5" stroke-linecap="round"/>
+      </g>
+    </svg>
+  </div>
+
+  <header>
+    <div class="eyebrow">Our Declaration</div>
+    <h1>Vision Statement</h1>
+    <div class="subtitle">Team Magnificent · THREE International</div>
+  </header>
+
+  <div class="vision">
+    <p>
+      We are <strong>Team Magnificent</strong> — the fastest growing team in THREE International.
+      We are not chasing growth. We are <em>in massive, exponential growth and momentum</em> right now.
+    </p>
+
+    <p>
+      We are committed to <strong>magnificent results</strong> — in compensation, in ranks, in leadership development, and in creating massive fast momentum as individuals and as a team.
+    </p>
+
+    <p>
+      We are builders. <strong>We do great deeds. We don't just plan — we execute.</strong>
+      Success loves speed, and we run with alacrity.
+    </p>
+
+    <p>
+      We believe that <em>professionals use tools</em>. Amateurs are trying to sell.
+      We are professionals. We have built tools designed to work for us — AI-empowered systems for training, development, team support, and onboarding that create the conditions for human leadership to scale.
+    </p>
+
+    <p>
+      We understand that <strong>technology does not replace human development</strong> — it creates the conditions for it to happen at scale.
+      We work <em>with</em> our people. We develop leaders. We build real relationships. The system amplifies what we do, but <strong>we are the architects of momentum</strong>.
+    </p>
+
+    <p>
+      We lead with <em>product first</em>. GLP-THREE transformed our founder's life — 14 pounds lost in 6 weeks — and we share that story with conviction because it is true. Every person we bring into this business joins because the product works, not because we made a pitch.
+    </p>
+  </div>
+
+  <div class="goal-block">
+    <div class="label">Our Mission</div>
+    <div class="number">10,000</div>
+    <div class="desc">Six-Figure Earners Created Through THREE International</div>
+  </div>
+
+  <div class="declaration">
+    <p>
+      If you joined Team Magnificent, you just hit the lottery of network marketing success. We are not waiting for momentum. We are the momentum. The speed of the leader is the speed of the group, and we are moving.
+    </p>
+  </div>
+
+  <div class="vision">
+    <p>
+      Welcome to <strong>21st century AI-empowered network marketing</strong>.
+      Welcome to a team that builds, executes, and wins.
+      Welcome to Team Magnificent.
+    </p>
+  </div>
+
+  <footer>
+    <div class="signature">Kevin L. Gardner</div>
+    <div class="role">Founder & Co-Leader · Team Magnificent</div>
+    <div class="date">Established 2025 · THREE International</div>
+  </footer>
+</div>
+
+</body>
+</html>
