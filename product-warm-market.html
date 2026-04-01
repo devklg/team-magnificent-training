@@ -1,0 +1,666 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Team Magnificent — Who Do You Know?</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0A0A0A;
+  --surface: #111111;
+  --surface-2: #1A1A1A;
+  --gold: #C9A84C;
+  --gold-bright: #F5C030;
+  --gold-dim: rgba(201,168,76,0.12);
+  --gold-border: rgba(201,168,76,0.2);
+  --teal: #2DD4BF;
+  --teal-dim: rgba(45,212,191,0.1);
+  --orange: #D4601A;
+  --cream: #F5EFE6;
+  --cream-dim: rgba(245,239,230,0.6);
+  --cream-faint: rgba(245,239,230,0.08);
+  --muted: #888888;
+  --border: rgba(201,168,76,0.15);
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body { background:var(--bg); color:var(--cream); font-family:'DM Sans',sans-serif; min-height:100vh; }
+
+/* HERO */
+.hero {
+  padding: 56px 24px 44px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  border-bottom: 1px solid var(--border);
+}
+.hero::before {
+  content:'';
+  position:absolute; inset:0;
+  background: radial-gradient(ellipse 70% 55% at 50% 0%, rgba(201,168,76,0.12) 0%, transparent 70%),
+              radial-gradient(ellipse 35% 35% at 80% 90%, rgba(45,212,191,0.05) 0%, transparent 60%);
+  pointer-events:none;
+}
+.compass-wrap {
+  margin-bottom:24px;
+  display:inline-block;
+  animation: float 6s ease-in-out infinite;
+  position:relative; z-index:1;
+}
+.compass-glow {
+  position:absolute; top:50%; left:50%;
+  transform:translate(-50%,-50%);
+  width:160px; height:160px;
+  background:radial-gradient(circle, rgba(201,168,76,0.2) 0%, transparent 70%);
+  border-radius:50%;
+  animation:pulse-glow 3s ease-in-out infinite;
+}
+@keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-9px)} }
+@keyframes pulse-glow { 0%,100%{opacity:0.5;transform:translate(-50%,-50%) scale(1)} 50%{opacity:1;transform:translate(-50%,-50%) scale(1.2)} }
+.hero-tag {
+  font-family:'DM Mono',monospace;
+  font-size:10px; letter-spacing:0.35em;
+  text-transform:uppercase; color:var(--teal);
+  margin-bottom:14px; position:relative; z-index:1;
+}
+.hero-title {
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(48px,9vw,80px);
+  letter-spacing:0.04em; line-height:0.92;
+  color:var(--cream); position:relative; z-index:1;
+}
+.hero-title em { color:var(--gold); font-style:normal; }
+.hero-sub {
+  margin-top:16px;
+  font-size:15.5px; line-height:1.75;
+  color:var(--cream-dim);
+  max-width:560px; margin-left:auto; margin-right:auto;
+  position:relative; z-index:1;
+}
+.hero-sub strong { color:var(--cream); font-weight:600; }
+
+/* COMMITMENT BAND */
+.band {
+  background:linear-gradient(135deg,#B8942A 0%,#F5C030 45%,#C9A84C 100%);
+  padding:13px 32px; text-align:center;
+}
+.band p {
+  font-family:'Bebas Neue',sans-serif;
+  font-size:14px; letter-spacing:0.14em; color:#0A0A0A;
+}
+
+/* MAIN LAYOUT */
+.main {
+  max-width:760px;
+  margin:0 auto;
+  padding:52px 24px 80px;
+}
+
+/* INTRO BLOCK */
+.intro-block {
+  background:var(--gold-dim);
+  border:1px solid var(--gold-border);
+  border-left:4px solid var(--gold);
+  padding:24px 28px;
+  margin-bottom:40px;
+}
+.intro-label {
+  font-family:'DM Mono',monospace;
+  font-size:9px; letter-spacing:0.28em;
+  text-transform:uppercase; color:var(--gold);
+  margin-bottom:10px;
+}
+.intro-block p {
+  font-size:15px; line-height:1.78; color:var(--cream);
+}
+.intro-block p strong { color:var(--gold); font-weight:600; }
+.intro-block p em { color:var(--teal); font-style:normal; }
+
+/* BA INFO */
+.section-label {
+  font-family:'DM Mono',monospace;
+  font-size:10px; letter-spacing:0.28em;
+  text-transform:uppercase; color:var(--teal);
+  margin-bottom:8px;
+}
+.section-title {
+  font-family:'Bebas Neue',sans-serif;
+  font-size:32px; letter-spacing:0.06em;
+  color:var(--cream); margin-bottom:20px;
+}
+.field-row {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:16px;
+  margin-bottom:16px;
+}
+@media(max-width:540px){ .field-row{grid-template-columns:1fr;} }
+.field {
+  display:flex; flex-direction:column; gap:7px;
+}
+.field label {
+  font-family:'DM Mono',monospace;
+  font-size:10px; letter-spacing:0.2em;
+  text-transform:uppercase; color:var(--gold);
+}
+.field input, .field select {
+  background:var(--surface-2);
+  border:1px solid var(--border);
+  border-radius:4px;
+  padding:12px 15px;
+  font-family:'DM Sans',sans-serif;
+  font-size:15px; color:var(--cream);
+  outline:none;
+  transition:border-color 0.2s, box-shadow 0.2s;
+  -webkit-appearance:none;
+}
+.field input::placeholder { color:rgba(245,239,230,0.25); }
+.field input:focus, .field select:focus {
+  border-color:var(--gold);
+  box-shadow:0 0 0 3px rgba(201,168,76,0.1);
+}
+.field select option { background:var(--surface-2); }
+
+/* DIVIDER */
+.divider {
+  height:1px;
+  background:var(--border);
+  margin:36px 0;
+  position:relative;
+}
+.divider span {
+  position:absolute; top:50%; left:50%;
+  transform:translate(-50%,-50%);
+  background:var(--bg);
+  padding:0 14px;
+  font-family:'DM Mono',monospace;
+  font-size:9px; letter-spacing:0.25em;
+  text-transform:uppercase;
+  color:rgba(245,239,230,0.3);
+}
+
+/* PROSPECT ENTRIES */
+.prospects-header {
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-end;
+  margin-bottom:20px;
+  flex-wrap:wrap; gap:12px;
+}
+.prospect-count {
+  font-family:'DM Mono',monospace;
+  font-size:10px; letter-spacing:0.15em;
+  color:var(--teal);
+}
+.btn-add {
+  background:transparent;
+  border:1px solid var(--gold-border);
+  border-radius:4px;
+  padding:8px 18px;
+  font-family:'DM Mono',monospace;
+  font-size:10px; letter-spacing:0.18em;
+  text-transform:uppercase; color:var(--gold);
+  cursor:pointer;
+  transition:border-color 0.2s, background 0.2s;
+}
+.btn-add:hover { border-color:var(--gold); background:var(--gold-dim); }
+
+/* PROSPECT CARD */
+.prospect-card {
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:8px;
+  padding:24px;
+  margin-bottom:16px;
+  position:relative;
+  animation:card-in 0.25s ease-out;
+}
+@keyframes card-in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.card-header {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:18px;
+}
+.card-num {
+  font-family:'Bebas Neue',sans-serif;
+  font-size:20px; letter-spacing:0.08em;
+  color:var(--teal);
+}
+.btn-remove {
+  background:none; border:none;
+  color:rgba(245,239,230,0.25);
+  font-size:18px; cursor:pointer; line-height:1;
+  padding:4px;
+  transition:color 0.2s;
+}
+.btn-remove:hover { color:var(--orange); }
+.card-fields {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:14px;
+}
+@media(max-width:540px){ .card-fields{grid-template-columns:1fr;} }
+.card-fields .field.full { grid-column:1/-1; }
+
+/* PRODUCT TAGS */
+.tag-group {
+  display:flex; flex-wrap:wrap; gap:8px;
+  margin-top:4px;
+}
+.tag {
+  padding:6px 14px;
+  border:1px solid var(--border);
+  border-radius:20px;
+  font-family:'DM Mono',monospace;
+  font-size:10px; letter-spacing:0.1em;
+  color:var(--muted);
+  cursor:pointer;
+  transition:all 0.15s;
+  user-select:none;
+}
+.tag:hover { border-color:rgba(201,168,76,0.4); color:var(--cream-dim); }
+.tag.selected { border-color:var(--gold); background:var(--gold-dim); color:var(--gold); }
+.tag.selected-teal { border-color:var(--teal); background:var(--teal-dim); color:var(--teal); }
+
+/* SUBMIT */
+.submit-area { margin-top:40px; }
+.submit-note {
+  font-family:'DM Mono',monospace;
+  font-size:10px; letter-spacing:0.12em;
+  color:rgba(245,239,230,0.3);
+  text-align:center; margin-bottom:14px;
+}
+.btn-submit {
+  width:100%;
+  background:linear-gradient(135deg,#B8942A 0%,#F5C030 45%,#C9A84C 100%);
+  border:none; border-radius:4px;
+  padding:18px 32px;
+  font-family:'Bebas Neue',sans-serif;
+  font-size:20px; letter-spacing:0.18em;
+  color:#0A0A0A; cursor:pointer;
+  transition:opacity 0.2s, transform 0.1s;
+}
+.btn-submit:hover { opacity:0.92; transform:translateY(-1px); }
+.btn-submit:active { transform:translateY(0); }
+.btn-submit:disabled { opacity:0.45; cursor:not-allowed; transform:none; }
+.btn-spinner {
+  display:none;
+  width:18px; height:18px;
+  border:2px solid rgba(10,10,10,0.3);
+  border-top-color:#0A0A0A;
+  border-radius:50%;
+  animation:spin 0.7s linear infinite;
+  margin:0 auto;
+}
+@keyframes spin{to{transform:rotate(360deg)}}
+.loading .btn-text { display:none; }
+.loading .btn-spinner { display:block; }
+
+/* ERROR */
+.form-error {
+  display:none;
+  background:rgba(212,96,26,0.08);
+  border:1px solid rgba(212,96,26,0.3);
+  border-radius:4px; padding:13px 18px;
+  font-family:'DM Mono',monospace;
+  font-size:11px; color:#E07050;
+  margin-bottom:16px;
+}
+
+/* SUCCESS */
+.success-panel {
+  display:none;
+  text-align:center; padding:64px 24px;
+  max-width:560px; margin:0 auto;
+  animation:reveal 0.5s ease-out;
+}
+@keyframes reveal{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+.success-icon { font-size:52px; margin-bottom:20px; }
+.success-title {
+  font-family:'Bebas Neue',sans-serif;
+  font-size:54px; letter-spacing:0.04em;
+  color:var(--gold); line-height:1; margin-bottom:12px;
+}
+.success-msg {
+  font-size:15.5px; line-height:1.78;
+  color:var(--cream-dim); margin-bottom:28px;
+}
+.success-msg strong { color:var(--cream); }
+.success-actions {
+  display:flex; gap:12px; justify-content:center; flex-wrap:wrap;
+}
+.btn-action {
+  padding:12px 28px; border-radius:4px;
+  font-family:'Bebas Neue',sans-serif;
+  font-size:15px; letter-spacing:0.14em;
+  cursor:pointer; text-decoration:none;
+  display:inline-block;
+  transition:opacity 0.2s;
+}
+.btn-action:hover { opacity:0.85; }
+.btn-primary { background:var(--gold); color:#0A0A0A; border:none; }
+.btn-secondary { background:transparent; color:var(--teal); border:1px solid rgba(45,212,191,0.35); }
+
+/* FOOTER */
+.footer {
+  border-top:1px solid var(--border);
+  padding:18px 32px;
+  display:flex; justify-content:space-between;
+  align-items:center; flex-wrap:wrap; gap:8px;
+  background:#0C0906;
+}
+.footer-brand { font-family:'Bebas Neue',sans-serif; font-size:13px; letter-spacing:0.14em; color:var(--gold); opacity:0.6; }
+.footer-url { font-family:'DM Mono',monospace; font-size:10px; color:var(--cream-dim); letter-spacing:0.06em; }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="compass-wrap">
+    <div class="compass-glow"></div>
+    <svg width="82" height="82" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+      <polygon points="50,3 46,43 50,50 54,43" fill="#C9A84C"/>
+      <polygon points="50,97 46,57 50,50 54,57" fill="#C9A84C"/>
+      <polygon points="97,50 57,46 50,50 57,54" fill="#C9A84C"/>
+      <polygon points="3,50 43,46 50,50 43,54" fill="#C9A84C"/>
+      <polygon points="77,23 57,45 50,50 54,43" fill="#C9A84C" opacity="0.6"/>
+      <polygon points="23,23 43,45 50,50 46,43" fill="#C9A84C" opacity="0.6"/>
+      <polygon points="77,77 57,55 50,50 54,57" fill="#C9A84C" opacity="0.6"/>
+      <polygon points="23,77 43,55 50,50 46,57" fill="#C9A84C" opacity="0.6"/>
+      <circle cx="50" cy="50" r="21" fill="none" stroke="#4A90D9" stroke-width="1.5" opacity="0.65"/>
+      <circle cx="50" cy="50" r="29" fill="none" stroke="#4A90D9" stroke-width="0.7" opacity="0.25"/>
+      <circle cx="50" cy="50" r="7.5" fill="#2DD4BF"/>
+      <circle cx="50" cy="50" r="3.5" fill="#0A0A0A"/>
+    </svg>
+  </div>
+  <div class="hero-tag">Team Magnificent · Warm Market Tool</div>
+  <div class="hero-title">WHO DO YOU<br><em>KNOW?</em></div>
+  <div class="hero-sub">You just saw what GLP-THREE does. <strong>Now think about the people in your life</strong> who are dealing with weight, energy, or health challenges — or who are looking for a real income opportunity. <em>This is where your business begins.</em></div>
+</div>
+
+<!-- BAND -->
+<div class="band">
+  <p>YOUR WARM MARKET IS YOUR FASTEST PATH TO YOUR FIRST CYCLE · TWO NAMES IS ALL IT TAKES TO START</p>
+</div>
+
+<!-- MAIN -->
+<div class="main" id="mainForm">
+
+  <!-- INTRO -->
+  <div class="intro-block">
+    <div class="intro-label">Why this matters</div>
+    <p>Most people in network marketing <strong>wing it</strong> — they talk to random people with no system. Team Magnificent BAs start with a <em>documented warm market list</em>. Your sponsor sees it. Kevin sees it. And when you submit this, your team immediately knows who to help you reach. <strong>Professionals use tools. Amateurs are trying to sell.</strong></p>
+  </div>
+
+  <!-- YOUR INFO -->
+  <div class="section-label">Step 1</div>
+  <div class="section-title">YOUR INFORMATION</div>
+  <div class="field-row">
+    <div class="field">
+      <label>Your Name</label>
+      <input type="text" id="baName" placeholder="First Last">
+    </div>
+    <div class="field">
+      <label>Your THREE Member ID</label>
+      <input type="text" id="baMemberId" placeholder="Your member ID">
+    </div>
+  </div>
+  <div class="field-row">
+    <div class="field">
+      <label>Your Email</label>
+      <input type="email" id="baEmail" placeholder="your@email.com">
+    </div>
+    <div class="field">
+      <label>Your Phone</label>
+      <input type="tel" id="baPhone" placeholder="(XXX) XXX-XXXX">
+    </div>
+  </div>
+
+  <div class="divider"><span>Your Prospects</span></div>
+
+  <!-- PROSPECTS -->
+  <div class="section-label">Step 2</div>
+  <div class="section-title">WHO DO YOU KNOW?</div>
+  <p style="font-size:14.5px;color:var(--cream-dim);line-height:1.72;margin-bottom:24px;">Think about people dealing with weight challenges, low energy, or health goals. Think about people looking for extra income. Don't pre-judge — <strong style="color:var(--cream);">just write the names.</strong> Add as many as you want. Start with your best two.</p>
+
+  <div class="prospects-header">
+    <div>
+      <div class="section-label" style="margin-bottom:4px;">Prospect List</div>
+      <div class="prospect-count" id="countLabel">1 prospect added</div>
+    </div>
+    <button class="btn-add" onclick="addProspect()">+ ADD ANOTHER PERSON</button>
+  </div>
+
+  <div id="prospectList"></div>
+
+  <div class="form-error" id="formError"></div>
+
+  <div class="submit-area">
+    <div class="submit-note">Your list saves to Team Magnificent. Kevin is notified. You get a copy by email. Next step: create a personalized invite for each person.</div>
+    <button class="btn-submit" id="submitBtn" onclick="submitWarmMarket()">
+      <span class="btn-text">SUBMIT MY WARM MARKET LIST</span>
+      <span class="btn-spinner"></span>
+    </button>
+  </div>
+
+</div>
+
+<!-- SUCCESS -->
+<div class="success-panel" id="successPanel">
+  <div class="success-icon">📋</div>
+  <div class="success-title">LIST SAVED.</div>
+  <div class="success-msg">Your warm market list is saved and your team has been notified. <strong>Check your email for a copy of your list.</strong> Now the work begins — reach out to your top two names within 24 hours.</div>
+  <div class="success-actions">
+    <a href="invitation-art-masterclass.html" class="btn-action btn-primary">CREATE THEIR INVITATION</a>
+    <a href="product-warm-market.html" class="btn-secondary btn-action">ADD MORE PEOPLE</a>
+  </div>
+</div>
+
+<div class="footer">
+  <div class="footer-brand">TEAM MAGNIFICENT · THREE INTERNATIONAL</div>
+  <div class="footer-url">devklg.github.io/team-magnificent-training</div>
+</div>
+
+<script>
+const GATEWAY = 'http://localhost:2525';
+let prospectCount = 0;
+
+const INTERESTS = [
+  { label:'Weight Loss', key:'weight-loss', style:'selected' },
+  { label:'Energy & Wellness', key:'energy', style:'selected' },
+  { label:'Business Opportunity', key:'business', style:'selected-teal' },
+  { label:'GLP-THREE Product', key:'glp-three', style:'selected' }
+];
+
+function addProspect(prefill) {
+  prospectCount++;
+  const idx = prospectCount;
+  const div = document.createElement('div');
+  div.className = 'prospect-card';
+  div.id = 'prospect-' + idx;
+  div.innerHTML = `
+    <div class="card-header">
+      <div class="card-num">${String(idx).padStart(2,'0')}</div>
+      ${idx > 1 ? `<button class="btn-remove" onclick="removeProspect(${idx})" title="Remove">&times;</button>` : ''}
+    </div>
+    <div class="card-fields">
+      <div class="field">
+        <label>First &amp; Last Name</label>
+        <input type="text" id="p${idx}-name" placeholder="Full name">
+      </div>
+      <div class="field">
+        <label>How You Know Them</label>
+        <input type="text" id="p${idx}-relationship" placeholder="Friend, family, coworker...">
+      </div>
+      <div class="field">
+        <label>Phone or Email</label>
+        <input type="text" id="p${idx}-contact" placeholder="Best way to reach them">
+      </div>
+      <div class="field">
+        <label>City / State</label>
+        <input type="text" id="p${idx}-location" placeholder="Optional">
+      </div>
+      <div class="field full">
+        <label>Why would they benefit? (select all that apply)</label>
+        <div class="tag-group" id="p${idx}-tags">
+          ${INTERESTS.map(i => `<div class="tag" data-key="${i.key}" data-style="${i.style}" onclick="toggleTag(this,'${i.style}')">${i.label}</div>`).join('')}
+        </div>
+      </div>
+      <div class="field full">
+        <label>Notes (optional)</label>
+        <input type="text" id="p${idx}-notes" placeholder="Anything relevant...">
+      </div>
+    </div>
+  `;
+  document.getElementById('prospectList').appendChild(div);
+  updateCount();
+}
+
+function removeProspect(idx) {
+  const el = document.getElementById('prospect-' + idx);
+  if (el) el.remove();
+  updateCount();
+}
+
+function toggleTag(el, activeStyle) {
+  if (el.classList.contains('selected') || el.classList.contains('selected-teal')) {
+    el.classList.remove('selected','selected-teal');
+  } else {
+    el.classList.add(activeStyle);
+  }
+}
+
+function updateCount() {
+  const cards = document.querySelectorAll('.prospect-card').length;
+  document.getElementById('countLabel').textContent = cards + ' prospect' + (cards !== 1 ? 's' : '') + ' added';
+}
+
+function getProspects() {
+  const prospects = [];
+  document.querySelectorAll('.prospect-card').forEach(card => {
+    const id = card.id.replace('prospect-','');
+    const name = document.getElementById('p'+id+'-name')?.value.trim();
+    if (!name) return;
+    const tags = [];
+    card.querySelectorAll('.tag.selected, .tag.selected-teal').forEach(t => tags.push(t.dataset.key));
+    prospects.push({
+      name,
+      relationship: document.getElementById('p'+id+'-relationship')?.value.trim(),
+      contact:      document.getElementById('p'+id+'-contact')?.value.trim(),
+      location:     document.getElementById('p'+id+'-location')?.value.trim(),
+      interests:    tags,
+      notes:        document.getElementById('p'+id+'-notes')?.value.trim()
+    });
+  });
+  return prospects;
+}
+
+async function submitWarmMarket() {
+  const baName     = document.getElementById('baName').value.trim();
+  const baMemberId = document.getElementById('baMemberId').value.trim();
+  const baEmail    = document.getElementById('baEmail').value.trim();
+  const baPhone    = document.getElementById('baPhone').value.trim();
+  const prospects  = getProspects();
+  const errEl      = document.getElementById('formError');
+  errEl.style.display = 'none';
+
+  if (!baName)     return showError('Please enter your name.');
+  if (!baEmail || !baEmail.includes('@')) return showError('Please enter a valid email address.');
+  if (prospects.length === 0) return showError('Please add at least one prospect.');
+  if (!prospects[0].name) return showError('Please enter at least one prospect name.');
+
+  const btn = document.getElementById('submitBtn');
+  btn.classList.add('loading');
+  btn.disabled = true;
+
+  const payload = {
+    ba_name:      baName,
+    ba_member_id: baMemberId,
+    ba_email:     baEmail,
+    ba_phone:     baPhone,
+    prospects,
+    submitted_at: new Date().toISOString(),
+    source:       'product-warm-market.html',
+    team:         'Team Magnificent'
+  };
+
+  try {
+    await tripleStackWrite(payload);
+    await sendAlertEmail(payload);
+    await sendBAConfirmEmail(payload);
+
+    document.getElementById('mainForm').style.display = 'none';
+    document.getElementById('successPanel').style.display = 'block';
+    window.scrollTo({top:0, behavior:'smooth'});
+  } catch(err) {
+    console.error(err);
+    showError('Something went wrong. Please try again or contact your sponsor.');
+    btn.classList.remove('loading');
+    btn.disabled = false;
+  }
+}
+
+async function tripleStackWrite(data) {
+  // MongoDB
+  await fetch(GATEWAY + '/api/tools/mongodb/execute', {
+    method:'POST', headers:{'Content-Type':'application/json'},
+    body: JSON.stringify({ action:'insert', params:{ database:'team_magnificent', collection:'warm_market_lists', document: data }})
+  });
+  // Neo4j
+  const baId = data.ba_member_id || 'unknown';
+  const cypher = `MERGE (ba:BusinessAssociate {member_id: '${baId}'}) SET ba.name = '${data.ba_name}', ba.email = '${data.ba_email}' WITH ba MERGE (wm:WarmMarketSubmission {ba_id: '${baId}', submitted_at: '${data.submitted_at}'}) SET wm.prospect_count = ${data.prospects.length}, wm.team = 'Team Magnificent' MERGE (ba)-[:SUBMITTED_WARM_MARKET]->(wm)`;
+  await fetch(GATEWAY + '/api/tools/neo4j/execute', {
+    method:'POST', headers:{'Content-Type':'application/json'},
+    body: JSON.stringify({ action:'cypher', params:{ query: cypher }})
+  });
+  // ChromaDB
+  await fetch(GATEWAY + '/api/tools/chromadb/execute', {
+    method:'POST', headers:{'Content-Type':'application/json'},
+    body: JSON.stringify({ action:'add', params:{
+      collection_name: 'warm_market_lists',
+      ids: ['wm_' + baId + '_' + Date.now()],
+      documents: [JSON.stringify(data)],
+      metadatas: [{ ba_name: data.ba_name, ba_member_id: baId, prospect_count: data.prospects.length }]
+    }})
+  });
+}
+
+async function sendAlertEmail(data) {
+  const prospectLines = data.prospects.map((p,i) => `${i+1}. ${p.name} | ${p.relationship} | ${p.contact} | Interests: ${p.interests.join(', ')}`).join('\n');
+  await fetch(GATEWAY + '/api/tools/gmail/execute', {
+    method:'POST', headers:{'Content-Type':'application/json'},
+    body: JSON.stringify({ action:'send_alert', params:{
+      to: 'devkev202@gmail.com',
+      subject: 'Warm Market List Submitted — ' + data.ba_name + ' (' + data.prospects.length + ' prospects)',
+      body: 'BA: ' + data.ba_name + ' | ID: ' + data.ba_member_id + ' | Email: ' + data.ba_email + '\n\nPROSPECTS:\n' + prospectLines + '\n\nSubmitted: ' + data.submitted_at
+    }})
+  });
+}
+
+async function sendBAConfirmEmail(data) {
+  const prospectLines = data.prospects.map((p,i) => `${i+1}. ${p.name} (${p.relationship}) — ${p.interests.join(', ')}`).join('\n');
+  await fetch(GATEWAY + '/api/tools/gmail/execute', {
+    method:'POST', headers:{'Content-Type':'application/json'},
+    body: JSON.stringify({ action:'send_alert', params:{
+      to: data.ba_email,
+      subject: 'Your Warm Market List — Team Magnificent',
+      body: 'Hi ' + data.ba_name + ',\n\nHere is your warm market list as submitted:\n\n' + prospectLines + '\n\nYour next move: reach out to your top 2 names within 24 hours. Use the Art of Inviting tool to create a personalized invitation for each one.\n\nTool: https://devklg.github.io/team-magnificent-training/invitation-art-masterclass.html\n\nRun with alacrity.\n\nKevin Gardner | Team Magnificent\n+1 (323) 351-9758'
+    }})
+  });
+}
+
+function showError(msg) {
+  const el = document.getElementById('formError');
+  el.textContent = msg;
+  el.style.display = 'block';
+  el.scrollIntoView({behavior:'smooth', block:'center'});
+}
+
+// Init with first prospect
+addProspect();
+</script>
+</body>
+</html>

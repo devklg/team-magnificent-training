@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Art of Inviting - Kevin's Masterclass | Magnificent Worldwide</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #1a0033 0%, #2d0052 100%);
+            color: #fff;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .masterclass-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            background: rgba(138, 43, 226, 0.2);
+            border-radius: 25px;
+            padding: 40px;
+            border: 3px solid #8a2be2;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '🎭';
+            position: absolute;
+            font-size: 8rem;
+            opacity: 0.1;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            color: #8a2be2;
+            margin-bottom: 15px;
+            text-shadow: 0 0 20px rgba(138, 43, 226, 0.5);
+            position: relative;
+            z-index: 2;
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            color: #fff;
+            position: relative;
+            z-index: 2;
+        }
+
+        .quote-banner {
+            background: linear-gradient(45deg, rgba(138, 43, 226, 0.3), rgba(255, 0, 255, 0.2));
+            border-left: 5px solid #8a2be2;
+            padding: 25px;
+            margin: 30px 0;
+            border-radius: 15px;
+            font-style: italic;
+            font-size: 1.3rem;
+            text-align: center;
+        }
+
+        .invitation-principles {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .principle-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 30px;
+            border: 2px solid #8a2be2;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .principle-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(138, 43, 226, 0.1) 0%, transparent 70%);
+            animation: rotate 10s linear infinite;
+        }
+
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .principle-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(138, 43, 226, 0.4);
+            border-color: #ff00ff;
+        }
+
+        .principle-number {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            background: linear-gradient(135deg, #8a2be2, #ff00ff);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+            z-index: 3;
+        }
+
+        .principle-card h3 {
+            color: #8a2be2;
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .principle-card p {
+            color: #fff;
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .example-box {
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 10px;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 4px solid #4CAF50;
+            position: relative;
+            z-index: 2;
+        }
+
+        .example-label {
+            color: #4CAF50;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .bad-example {
+            border-left-color: #ff4444;
+        }
+
+        .bad-example .example-label {
+            color: #ff4444;
+        }
+
+        .ticket-generator {
+            background: rgba(138, 43, 226, 0.1);
+            border-radius: 20px;
+            padding: 40px;
+            margin: 40px 0;
+            border: 2px solid #8a2be2;
+        }
+
+        .ticket-preview {
+            background: linear-gradient(135deg, #8a2be2, #6a1b9a);
+            border-radius: 15px;
+            padding: 30px;
+            margin: 20px 0;
+            position: relative;
+            overflow: hidden;
+            border: 3px solid #fff;
+            box-shadow: 0 10px 30px rgba(138, 43, 226, 0.6);
+        }
+
+        .ticket-preview::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            opacity: 0.3;
+        }
+
+        .ticket-header {
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .ticket-title {
+            font-size: 2rem;
+            color: #fff;
+            margin-bottom: 10px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .ticket-subtitle {
+            color: #f0f0f0;
+            font-size: 1.1rem;
+        }
+
+        .ticket-body {
+            margin: 25px 0;
+            position: relative;
+            z-index: 2;
+        }
+
+        .invitation-scenarios {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 25px;
+            margin: 40px 0;
+        }
+
+        .scenario-card {
+            background: rgba(0, 0, 0, 0.4);
+            border-radius: 15px;
+            padding: 25px;
+            border: 1px solid rgba(138, 43, 226, 0.5);
+        }
+
+        .scenario-card h4 {
+            color: #8a2be2;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+
+        .conversation {
+            margin: 15px 0;
+        }
+
+        .you-say {
+            background: rgba(138, 43, 226, 0.3);
+            padding: 12px 18px;
+            border-radius: 18px;
+            margin: 8px 0;
+            margin-left: 30px;
+            position: relative;
+        }
+
+        .you-say::before {
+            content: "YOU:";
+            position: absolute;
+            left: -25px;
+            top: 12px;
+            font-size: 0.7rem;
+            color: #8a2be2;
+            font-weight: bold;
+        }
+
+        .they-say {
+            background: rgba(76, 175, 80, 0.3);
+            padding: 12px 18px;
+            border-radius: 18px;
+            margin: 8px 0;
+            margin-right: 30px;
+            position: relative;
+        }
+
+        .they-say::before {
+            content: "THEM:";
+            position: absolute;
+            right: -35px;
+            top: 12px;
+            font-size: 0.7rem;
+            color: #4CAF50;
+            font-weight: bold;
+        }
+
+        .psychology-tip {
+            background: rgba(255, 193, 7, 0.2);
+            border: 1px solid #FFC107;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+
+        .psychology-tip h5 {
+            color: #FFC107;
+            margin-bottom: 8px;
+        }
+
+        .fullscreen-note {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.9);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 15px;
+            border: 2px solid #8a2be2;
+            z-index: 1000;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .fullscreen-note:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 20px rgba(138, 43, 226, 0.6);
+        }
+
+        .download-button {
+            background: linear-gradient(135deg, #4CAF50, #45a049);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            margin: 15px 10px;
+            transition: all 0.3s ease;
+        }
+
+        .download-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(76, 175, 80, 0.4);
+        }
+
+        .mastery-levels {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 40px 0;
+        }
+
+        .mastery-level {
+            background: rgba(138, 43, 226, 0.1);
+            border-radius: 15px;
+            padding: 25px;
+            border: 2px solid #8a2be2;
+            text-align: center;
+        }
+
+        .mastery-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+
+        .mastery-level h4 {
+            color: #8a2be2;
+            margin-bottom: 15px;
+        }
+
+        .skill-list {
+            text-align: left;
+            margin: 15px 0;
+        }
+
+        .skill-list li {
+            margin: 8px 0;
+            color: #ccc;
+        }
+
+        .skill-list li::before {
+            content: "🎯 ";
+            margin-right: 8px;
+        }
+
+        @media (max-width: 768px) {
+            .invitation-principles,
+            .invitation-scenarios,
+            .mastery-levels {
+                grid-template-columns: 1fr;
+            }
+            
+            .fullscreen-note {
+                position: relative;
+                margin: 20px auto;
+                display: block;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="fullscreen-note" onclick="openFullscreen()">
+        🖥️ Click here for Full Screen Experience<br>
+        <small>Perfect for presenting to your team!</small>
+    </div>
+
+    <div class="masterclass-container">
+        <div class="header">
+            <h1>🎭 The Art of Inviting</h1>
+            <p>Kevin Gardner's Masterclass in Creating Desire, Exclusivity & FOMO</p>
+            <p style="margin-top: 15px; color: #8a2be2; font-weight: bold;">
+                "You're not sending links - you're issuing tickets to an exclusive dance!"
+            </p>
+        </div>
+
+        <div class="quote-banner">
+            💎 "The invitation is the dance. Master the invitation, and you master the outcome. 
+            Every word, every moment, every feeling you create determines whether they want to dance with you or walk away." 💎
+            <div style="margin-top: 15px; color: #8a2be2; font-weight: bold;">- Kevin Gardner</div>
+        </div>
+
+        <div class="invitation-principles">
+            <div class="principle-card">
+                <div class="principle-number">1</div>
+                <h3>🎫 Create Exclusivity, Not Availability</h3>
+                <p>Your invitation isn't for everyone - it's for the RIGHT person at the RIGHT time. Scarcity creates desire.</p>
+                
+                <div class="example-box bad-example">
+                    <div class="example-label">❌ AMATEUR APPROACH:</div>
+                    <p>"Hey, want to make money? Click this link!"</p>
+                </div>
+                
+                <div class="example-box">
+                    <div class="example-label">✅ MASTER APPROACH:</div>
+                    <p>"I've been watching your success, and something special came across my desk. It's not for everyone, but I immediately thought of you. Are you open to taking a private look?"</p>
+                </div>
+
+                <div class="psychology-tip">
+                    <h5>🧠 Psychology:</h5>
+                    <p>People want what they can't easily have. By positioning your invitation as exclusive and limited, you trigger the scarcity principle and social proof.</p>
+                </div>
+            </div>
+
+            <div class="principle-card">
+                <div class="principle-number">2</div>
+                <h3>⏰ Time Sensitivity Creates Action</h3>
+                <p>Urgency without pressure. Your invitation expires, positions fill up, opportunities move on.</p>
+                
+                <div class="example-box bad-example">
+                    <div class="example-label">❌ AMATEUR APPROACH:</div>
+                    <p>"Whenever you get a chance, check this out."</p>
+                </div>
+                
+                <div class="example-box">
+                    <div class="example-label">✅ MASTER APPROACH:</div>
+                    <p>"I've secured position #47,832 for you, but the enrollment window closes Friday. After that, the next available position could be months away. Interested in seeing what I've arranged?"</p>
+                </div>
+
+                <div class="psychology-tip">
+                    <h5>🧠 Psychology:</h5>
+                    <p>Loss aversion is powerful. People fear missing out more than they desire gaining something. Deadline + consequence = action.</p>
+                </div>
+            </div>
+
+            <div class="principle-card">
+                <div class="principle-number">3</div>
+                <h3>🎯 Personal Recognition, Not Generic Pitching</h3>
+                <p>They need to know WHY you thought of them specifically. What did you see in them?</p>
+                
+                <div class="example-box bad-example">
+                    <div class="example-label">❌ AMATEUR APPROACH:</div>
+                    <p>"This is perfect for anyone who wants financial freedom!"</p>
+                </div>
+                
+                <div class="example-box">
+                    <div class="example-label">✅ MASTER APPROACH:</div>
+                    <p>"Sarah, I've watched how you built your consulting practice from nothing, and the way you handle challenges reminds me of myself 20 years ago. This requires someone with your specific skillset."</p>
+                </div>
+
+                <div class="psychology-tip">
+                    <h5>🧠 Psychology:</h5>
+                    <p>Personal recognition triggers the ego and creates emotional investment. When someone feels "chosen" for specific reasons, they're much more likely to engage.</p>
+                </div>
+            </div>
+
+            <div class="principle-card">
+                <div class="principle-number">4</div>
+                <h3>🌟 Social Proof Through Positioning</h3>
+                <p>Show them they're joining winners, not starting from scratch.</p>
+                
+                <div class="example-box bad-example">
+                    <div class="example-label">❌ AMATEUR APPROACH:</div>
+                    <p>"Join my team and we'll figure it out together!"</p>
+                </div>
+                
+                <div class="example-box">
+                    <div class="example-label">✅ MASTER APPROACH:</div>
+                    <p>"You'll be joining Kevin Gardner's organization. Kevin has made money in every company since 1982, and his sponsor Paul Barrios has created 75+ millionaires. This isn't a startup - it's an established success system."</p>
+                </div>
+
+                <div class="psychology-tip">
+                    <h5>🧠 Psychology:</h5>
+                    <p>People want to join winning teams. By showcasing proven leadership and established success, you reduce risk perception and increase confidence.</p>
+                </div>
+            </div>
+
+            <div class="principle-card">
+                <div class="principle-number">5</div>
+                <h3>🔮 Future Vision, Not Present Problem</h3>
+                <p>Paint the picture of where they could be, not where they are now.</p>
+                
+                <div class="example-box bad-example">
+                    <div class="example-label">❌ AMATEUR APPROACH:</div>
+                    <p>"Tired of your 9-5? Hate your boss? Need more money?"</p>
+                </div>
+                
+                <div class="example-box">
+                    <div class="example-label">✅ MASTER APPROACH:</div>
+                    <p>"Imagine walking into your boss's office next year - not to quit, but to offer him a position on YOUR team. That's the kind of transformation I've seen happen with the right system and timing."</p>
+                </div>
+
+                <div class="psychology-tip">
+                    <h5>🧠 Psychology:</h5>
+                    <p>People buy dreams and possibilities, not solutions to problems. Positive future vision is more motivating than negative present circumstances.</p>
+                </div>
+            </div>
+
+            <div class="principle-card">
+                <div class="principle-number">6</div>
+                <h3>🎪 The Curiosity Loop</h3>
+                <p>Give enough to create intense curiosity, but not enough to satisfy it.</p>
+                
+                <div class="example-box bad-example">
+                    <div class="example-label">❌ AMATEUR APPROACH:</div>
+                    <p>"It's network marketing with products and compensation plans..."</p>
+                </div>
+                
+                <div class="example-box">
+                    <div class="example-label">✅ MASTER APPROACH:</div>
+                    <p>"I can't explain everything in a text, but I will say this: I've never seen anything like what Kevin has built. The technology alone is worth the conversation. When can we grab coffee?"</p>
+                </div>
+
+                <div class="psychology-tip">
+                    <h5>🧠 Psychology:</h5>
+                    <p>The curiosity gap - the space between what someone knows and what they want to know - creates irresistible mental tension that demands resolution.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="ticket-generator">
+            <h2 style="color: #8a2be2; text-align: center; margin-bottom: 30px;">🎫 Your Invitation Ticket Generator</h2>
+            <p style="text-align: center; color: #ccc; margin-bottom: 30px;">
+                Create personalized "tickets to the dance" that make people feel chosen, special, and excited to learn more.
+            </p>
+
+            <div class="ticket-preview">
+                <div class="ticket-header">
+                    <div class="ticket-title">🎭 EXCLUSIVE INVITATION</div>
+                    <div class="ticket-subtitle">Magnificent Worldwide Marketing & Sales Group</div>
+                </div>
+                
+                <div class="ticket-body">
+                    <p style="text-align: center; margin: 20px 0; font-size: 1.2rem;">
+                        <strong>[PROSPECT NAME]</strong><br>
+                        You have been personally selected by<br>
+                        <strong style="color: #8a2be2;">[YOUR NAME]</strong>
+                    </p>
+                    
+                    <div style="background: rgba(255,255,255,0.1); padding: 20px; border-radius: 10px; margin: 20px 0;">
+                        <h4 style="color: #8a2be2; text-align: center; margin-bottom: 15px;">SECURED POSITION DETAILS</h4>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                            <div style="text-align: center;">
+                                <strong>Position #:</strong><br>
+                                <span style="color: #4CAF50; font-size: 1.3rem;">[DYNAMIC]</span>
+                            </div>
+                            <div style="text-align: center;">
+                                <strong>Expires:</strong><br>
+                                <span style="color: #ff4444; font-size: 1.3rem;">[DATE]</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <p style="text-align: center; font-size: 1.1rem; margin: 20px 0;">
+                        "I've watched your success and immediately thought of you when this became available. 
+                        This isn't for everyone - but it's definitely for someone with your drive."
+                    </p>
+                    
+                    <div style="text-align: center; margin: 25px 0;">
+                        <div style="background: linear-gradient(135deg, #4CAF50, #45a049); color: white; padding: 15px 30px; border-radius: 25px; display: inline-block; font-weight: bold; font-size: 1.1rem;">
+                            🎫 CLAIM YOUR POSITION
+                        </div>
+                    </div>
+                    
+                    <p style="text-align: center; font-size: 0.9rem; color: #ccc;">
+                        Personal invitation from [YOUR NAME]<br>
+                        Kevin Gardner's Magnificent Worldwide Team
+                    </p>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin: 30px 0;">
+                <button class="download-button" onclick="generatePersonalTicket()">
+                    🎭 Generate My Personal Invitation Tickets
+                </button>
+                <button class="download-button" onclick="downloadTemplate()">
+                    📱 Download Mobile Templates
+                </button>
+            </div>
+        </div>
+
+        <div class="invitation-scenarios">
+            <div class="scenario-card">
+                <h4>📱 The Text Message Invitation</h4>
+                <div class="conversation">
+                    <div class="you-say">
+                        "Mike, quick question - are you still happy with your current income trajectory, or are you open to something that could change the game entirely?"
+                    </div>
+                    <div class="they-say">
+                        "What do you mean?"
+                    </div>
+                    <div class="you-say">
+                        "I can't explain it all in a text, but I secured a position for you in something special. 15 minutes of your time could change everything. Coffee tomorrow?"
+                    </div>
+                </div>
+                
+                <div class="psychology-tip">
+                    <h5>🧠 Why This Works:</h5>
+                    <p>Pattern interrupt + curiosity + time constraint + personal investment (secured position) + easy next step.</p>
+                </div>
+            </div>
+
+            <div class="scenario-card">
+                <h4>☕ The Coffee Shop Conversation</h4>
+                <div class="conversation">
+                    <div class="you-say">
+                        "Before I show you anything, I need you to know - this isn't for everyone. Are you genuinely open to looking at something outside your comfort zone?"
+                    </div>
+                    <div class="they-say">
+                        "I guess, what is it?"
+                    </div>
+                    <div class="you-say">
+                        "Here, scan this with your phone camera. I want you to see your name on this page and tell me what you think."
+                    </div>
+                </div>
+                
+                <div class="psychology-tip">
+                    <h5>🧠 Why This Works:</h5>
+                    <p>Pre-qualification + physical interaction + personalization shock + immediate social proof.</p>
+                </div>
+            </div>
+
+            <div class="scenario-card">
+                <h4>📧 The Professional Email</h4>
+                <div class="conversation">
+                    <div class="you-say">
+                        "Subject: Something crossed my desk - thought of you immediately<br><br>
+                        Lisa, I know how strategic you are about opportunities, so I won't waste your time with hype. Something landed on my desk that requires someone with your specific background. Not interested in details? No problem - just say so. Interested in a 10-minute conversation? Let me know when works."
+                    </div>
+                </div>
+                
+                <div class="psychology-tip">
+                    <h5>🧠 Why This Works:</h5>
+                    <p>Respect + specificity + easy out + professional tone + low time commitment.</p>
+                </div>
+            </div>
+
+            <div class="scenario-card">
+                <h4>🏢 The LinkedIn Approach</h4>
+                <div class="conversation">
+                    <div class="you-say">
+                        "Your post about building passive income really resonated. I've been following your journey and when this opportunity appeared, you immediately came to mind. Would love to share details if you're open."
+                    </div>
+                    <div class="they-say">
+                        "Tell me more"
+                    </div>
+                    <div class="you-say">
+                        "LinkedIn isn't the right platform for details, but I can tell you this - it involves working with Kevin Gardner, who's made money in every venture since 1982. Worth a conversation? Here's my calendar link."
+                    </div>
+                </div>
+                
+                <div class="psychology-tip">
+                    <h5>🧠 Why This Works:</h5>
+                    <p>Social listening + personal connection + credibility drop + platform transition + easy scheduling.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="mastery-levels">
+            <div class="mastery-level">
+                <div class="mastery-icon">🎯</div>
+                <h4>BEGINNER INVITER</h4>
+                <p>Learning the fundamentals</p>
+                <ul class="skill-list">
+                    <li>Uses invitation templates</li>
+                    <li>Focuses on curiosity creation</li>
+                    <li>Practices objection handling</li>
+                    <li>Tracks response rates</li>
+                    <li>Builds invitation confidence</li>
+                </ul>
+            </div>
+
+            <div class="mastery-level">
+                <div class="mastery-icon">🎭</div>
+                <h4>SKILLED INVITER</h4>
+                <p>Adapting to personalities</p>
+                <ul class="skill-list">
+                    <li>Personalizes every invitation</li>
+                    <li>Reads personality types</li>
+                    <li>Creates urgency naturally</li>
+                    <li>Handles multiple channels</li>
+                    <li>Builds anticipation sequences</li>
+                </ul>
+            </div>
+
+            <div class="mastery-level">
+                <div class="mastery-icon">👑</div>
+                <h4>MASTER INVITER</h4>
+                <p>Creating desire and demand</p>
+                <ul class="skill-list">
+                    <li>Makes people ask to join</li>
+                    <li>Creates invitation waiting lists</li>
+                    <li>Influences through stories</li>
+                    <li>Builds personal brand</li>
+                    <li>Teaches others to invite</li>
+                </ul>
+            </div>
+        </div>
+
+        <div style="background: rgba(138, 43, 226, 0.2); border-radius: 20px; padding: 40px; text-align: center; margin: 40px 0;">
+            <h2 style="color: #8a2be2; margin-bottom: 20px;">🎪 The Ultimate Truth</h2>
+            <p style="font-size: 1.3rem; font-style: italic; margin-bottom: 20px;">
+                "People don't buy products, opportunities, or even dreams.<br>
+                They buy feelings, relationships, and trust.<br>
+                Master the invitation, and you master the outcome."
+            </p>
+            <p style="color: #8a2be2; font-weight: bold;">
+                - Kevin Gardner, Magnificent Worldwide Marketing & Sales Group
+            </p>
+        </div>
+    </div>
+
+    <script>
+        function openFullscreen() {
+            // Create a new window with this content
+            const newWindow = window.open('', '_blank', 'fullscreen=yes,scrollbars=yes');
+            newWindow.document.write(document.documentElement.outerHTML);
+            newWindow.document.close();
+            
+            // Alternative method - show instructions
+            alert(`🖥️ FULL SCREEN INSTRUCTIONS:
+
+1. Press F11 for true fullscreen mode
+2. Use Ctrl + Mouse Wheel to zoom in/out  
+3. Right-click and "Open in New Tab" for separate window
+4. Perfect for presenting to your team!
+
+This invitation masterclass is designed to be shared and taught to your entire organization.`);
+        }
+
+        function generatePersonalTicket() {
+            const name = prompt("Enter your name for personalized invitation tickets:");
+            if (name) {
+                alert(`🎭 GENERATING PERSONAL INVITATION TICKETS FOR ${name.toUpperCase()}
+
+Your personalized tickets will include:
+✅ Your name and photo
+✅ Dynamic position numbers  
+✅ Personal success stories
+✅ QR codes for mobile sharing
+✅ Multiple invitation templates
+✅ Real-time tracking links
+
+These tickets make people feel CHOSEN and SPECIAL - not sold to!
+
+Ready to start creating desire instead of resistance? 🎪`);
+            }
+        }
+
+        function downloadTemplate() {
+            alert(`📱 MOBILE INVITATION TEMPLATES
+
+• Text message templates with high response rates
+• WhatsApp invitation sequences  
+• Social media sharing templates
+• Voice message scripts
+• Video invitation outlines
+• Follow-up sequences
+
+Each template teaches the psychology behind WHY it works, not just WHAT to say.
+
+The art of inviting is the foundation of all success! 🎯`);
+        }
+
+        // Add some interactive elements
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add click animations to principle cards
+            document.querySelectorAll('.principle-card').forEach(card => {
+                card.addEventListener('click', function() {
+                    this.style.transform = 'scale(1.02)';
+                    setTimeout(() => {
+                        this.style.transform = '';
+                    }, 200);
+                });
+            });
+
+            // Add floating animation to mastery levels
+            document.querySelectorAll('.mastery-level').forEach((level, index) => {
+                level.style.animation = `float 6s ease-in-out infinite`;
+                level.style.animationDelay = `${index * 2}s`;
+            });
+        });
+
+        // Add floating keyframes
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes float {
+                0%, 100% { transform: translateY(0px); }
+                50% { transform: translateY(-10px); }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
